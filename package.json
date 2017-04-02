@@ -1,0 +1,34 @@
+{
+  "name": "search-parser",
+  "version": "0.1.0",
+  "description": "Parse and create predicate from query expression. Supports boolean operators and keywords. ",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "watch 'npm run build' src",
+    "build": "babel src -d build",
+    "test": "jest src",
+    "test:watch": "npm test -- --watch",
+    "prepublish": "npm run build",
+    "release": "np"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "repository": "https://github.com/avivr/search-parser",
+  "author": "Aviv Rosental <aviv@falcore.co>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.3.2",
+    "jest": "^19.0.2",
+    "np": "^2.13.1",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "boolean-parser": "^0.0.2",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2"
+  }
+}
