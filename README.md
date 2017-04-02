@@ -20,3 +20,7 @@ npm instal search-parser --save
 ```javascript
 import { parse, parseToPredicate } from 'search-parser'
 ```
+
+
+## Notes
+This library depends on [boolean-parser-js](https://github.com/riichard/boolean-parser-js) to parse the expressions using boolean operators (AND, OR).
