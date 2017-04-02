@@ -4,6 +4,7 @@ Allow parsing search queries, using free-text, keywords and boolean operators.
 
 [![npm version](https://badge.fury.io/js/search-parser.svg)](https://badge.fury.io/js/search-parser)
 [![Build Status](https://travis-ci.org/avivr/search-parser.svg?branch=master)](https://travis-ci.org/avivr/search-parser)
+[![codecov](https://codecov.io/gh/avivr/search-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/avivr/search-parser)
 
 ## Installation
 
