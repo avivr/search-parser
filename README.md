@@ -2,6 +2,8 @@
 
 Allow parsing search queries, using free-text, keywords and boolean operators.
 
+[![npm version](https://badge.fury.io/js/search-parser.svg)](https://badge.fury.io/js/search-parser)
+
 ## Installation
 
 Using yarn:
