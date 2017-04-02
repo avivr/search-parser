@@ -40,13 +40,13 @@ And ```value``` is the term to search.
 Sample test case:
 
 ```javascript
-test('Parse freetext expression with multiple boolean operators and parenthesis', () => {
-    const expected = [
-      [{ "freetext": { "include": "query expression" } }, { "freetext": { "include": "another expression" } }, { "freetext": { "exclude": "last expression" } }],
-      [{ "freetext": { "include": "third expression" } }, { "freetext": { "exclude": "last expression" } }]
-    ];
-    expect(parse('(query expression and another expression or third expression) and not last expression')).toEqual(expected);
-  });
+test('Parse expression with keywords, freetext and boolean operators', () => {
+  const expected = [
+    [{ "name": { "include": "aviv" } }, { "last": { "include": "rosental" } }],
+    [{ "freetext": { "include": "any other contibuter" } }]
+  ];
+  expect(parse('name:aviv and last:rosental or any other contibuter')).toEqual(expected);
+});
 ```
 
 
