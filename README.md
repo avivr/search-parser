@@ -50,6 +50,36 @@ test('Parse expression with keywords, freetext and boolean operators', () => {
 });
 ```
 
+### parseToPredicate(query, searchFn)
+Parse the query string and convert it into a unified predicate which represent the given query.
+When executed on an ```item```, the predicate will call the given ```searchFn``` and pass it ```(item, textToSearch, keyword)```.
+
+Sample test case:
+
+```javascript
+const shows = [ 
+  { name: 'iron-fist', year: '2017', rating: '7.6' },
+  { name: 'the walking dead', year: '2010', rating: '8.5' },
+  { name: 'legion', year: '2017', rating: '8.8' },
+  { name: 'game of thrones', year: '2011', rating: '9.5' } 
+];
+
+function search(item, textToSearch, keyword) {
+  if (keyword === 'freetext') {
+    return Object.values(item).map(value => value.toLowerCase()).some(value => value.toLowerCase().includes(textToSearch.toLowerCase())) 
+  }
+  return item && item[keyword.toLowerCase()] && item[keyword.toLowerCase()].toLowerCase().includes(textToSearch.toLowerCase());
+}
+
+test('Search collection with keywords return multiple results', () => {
+  const predicate = parseToPredicate('year:2017', search);
+  const results = shows.filter(predicate);
+  expect(results).toEqual([{ name: 'iron-fist', year: '2017', rating: '7.6' }, { name: 'legion', year: '2017', rating: '8.8' }]);
+});
+```
+
+For more examples, see the [src/tests](src/tests) folder
+
 
 
 ## Notes
