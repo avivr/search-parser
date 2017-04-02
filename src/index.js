@@ -22,8 +22,7 @@ export function parse(query) {
       });
   }
 
-  var filterObjects = parsedBooleanQuery.map(toFilterObject);
-  return filterObjects;
+  return parsedBooleanQuery.map(toFilterObject);
 }
 
 function createPredicateExpression(queryExpr, check) {
