@@ -28,7 +28,7 @@ export function parse(query) {
 function createPredicateExpression(queryExpr, check) {
   const key = Object.keys(queryExpr)[0];
   const value = queryExpr[key];
-  const condition = o => value.include && check(o, value.include, key) || value.exclude && !check(o, value.exclude, key);
+  const condition = o => !!(value.include && check(o, value.include, key) || value.exclude && !check(o, value.exclude, key));
   return condition;
 }
 
