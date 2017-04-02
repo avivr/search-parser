@@ -1,8 +1,18 @@
 language: node_js
 node_js:
-  - '7'
-  - '6'
+- '7'
+- '6'
 cache: yarn
 branches:
   only:
-    - master
+  - master
+script:
+- yarn run build
+deploy:
+  provider: npm
+  email: aviv@falcore.co
+  api_key:
+    secure: l3O81dRQH2+AnzyixwwiaOat/Wu2y9/WNw6rEZwYXlmS44BTcoE+5ihYooFJPlFfOpDqIz8fTHPg/1OsJsmdaW0LDnePCBAIEkxIKsfTEhj1Yoax0HBK+Zefty/h8ftgWzJ24EDLP5ThD+9WvGYoa4linbIcBZ5EWlNAGvJiMk/tuzV41KTBZhYyOTQ2lVJZ68Zc6uZ7TEsQJdBfxf1kf0R5GTHvEPEbghCQD2Nmrmb11X8lMKHvmaj7EjYgECpfMIxPX0F6OZLmuTRNKadruLp2NQWEUk1PynERZrVgjDJHgyusjEOofpX1uN4JV7cbUarfnleYJDjrZMLBLFIY/A9+PyaXG6QN5Wx5SYK+N1CZaXpmWk3yftGaoWRhDVPvc2/LYSq2UHmYKmeVWh3GGaoaiY81Rl7R+uIWbRK/Ip88ZSkemuX6WZ3AWptHRCMHEozJ728U9aKpGpzadV+vwyejt0dQmGXPqmPabDKuld/68fwCmwmNWbLgTXfCLAz4f9ieSU+zl9omAQu/+TqfjgXSODIBJMTCXLmsTjTd3o7WXo46dbA/wRiJ3X9ZX1ZRdZLNSCyv1qS+VMWUdEbHHM3TiCpjzj3fitLd2AXcIkuhtpcFdj9nu7hXNwqPEmQxO6DBQbJ4QmL5DR0r69c6q8aEcTafVfGyPnUgVokCIP8=
+  on:
+    tags: true
+    repo: avivr/search-parser
