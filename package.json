@@ -15,6 +15,10 @@
       "env"
     ]
   },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
   "repository": "https://github.com/avivr/search-parser",
   "author": "Aviv Rosental <aviv@falcore.co>",
   "license": "MIT",
