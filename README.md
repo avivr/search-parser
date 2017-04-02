@@ -2,16 +2,21 @@
 
 Allow parsing search queries, using free-text, keywords and boolean operators.
 
-Yarn:
+## Installation
+
+Using yarn:
+
 ```shell
 yarn add search-parser
 ```
 
-npm: 
+Using npm: 
 ```shell 
 npm instal search-parser --save
 ```
 
+## Usage
+
 ```javascript
-import { parse } from 'search-parser'
+import { parse, parseToPredicate } from 'search-parser'
 ```

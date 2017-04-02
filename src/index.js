@@ -25,3 +25,24 @@ export function parse(query) {
   var filterObjects = parsedBooleanQuery.map(toFilterObject);
   return filterObjects;
 }
+
+function createPredicateExpression(queryExpr, check) {
+  const key = Object.keys(queryExpr)[0];
+  const value = queryExpr[key];
+  const condition = o => value.include && check(o, value.include, key) || value.exclude && !check(o, value.exclude, key);
+  return condition;
+}
+
+function createPredicate(queryExpr, check) {
+  const createExpression = expression => createPredicateExpression(expression, check);
+  const andExpr = (a, b) => o => a(o) && b(o);
+  const orExpr = (a, b) => o => a(o) || b(o);
+  const defaultAnd = () => true;
+  const defaultOr = () => false;
+  const combineAndExpressions = expr => expr.map(createExpression).reduce(andExpr, defaultAnd)
+  return queryExpr.map(combineAndExpressions).reduce(orExpr, defaultOr);
+}
+
+export function parseToPredicate(query, check) {
+  return createPredicate(parse(query), check);
+}
