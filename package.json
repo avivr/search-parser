@@ -1,6 +1,6 @@
 {
   "name": "search-parser",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Parse and create predicate from query expression. Supports boolean operators and keywords. ",
   "main": "build/index.js",
   "scripts": {
