@@ -26,6 +26,7 @@ import { parse, parseToPredicate } from 'search-parser'
 ### parse(query)
 Convert a query string into an array of arrays of expression objects.
 Support freetext, keywords (key:value), boolean operators (AND, OR, NOT) and parenthesis.
+For more information on the shapre of the nested arrays, read the documentation at [boolean-parser-js](https://github.com/riichard/boolean-parser-js).
 
 Each expression object is in the form:
 ```javascript
