@@ -1,9 +1,14 @@
 language: node_js
+sudo: false
 node_js:
 - '7'
 cache: yarn
+install:
+  - yarn global add codecov
 script:
   - yarn run build
+after_success:
+  - codecov
 deploy:
   provider: npm
   email: aviv@falcore.co
