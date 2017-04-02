@@ -58,7 +58,44 @@ test('Parse expression with keywords, freetext and boolean operators', () => {
 Parse the query string and convert it into a unified predicate which represent the given query.
 When executed on an ```item```, the predicate will call the given ```searchFn``` and pass it ```(item, textToSearch, keyword)```.
 
-Sample test case:
+Sample test cases:
+
+```javascript
+  function search(item, textToSearch, keyword) {
+    if (keyword === 'freetext') {
+      return Object.values(item).map(value => value.toLowerCase()).some(value => value.toLowerCase().includes(textToSearch.toLowerCase())) 
+    }
+    return item && item[keyword.toLowerCase()] && item[keyword.toLowerCase()].toLowerCase().includes(textToSearch.toLowerCase());
+  }
+
+  const show = { name: 'iron-fist', year: '2017', rating: '7.6' };
+
+  test('Text exists on object', () => {
+    const predicate = parseToPredicate('fist', search);
+    const result = predicate(show);
+    expect(result).toBe(true);
+  });
+
+  test('Text does not exists on object', () => {
+    const predicate = parseToPredicate('walking', search);
+    const result = predicate(show);
+    expect(result).toBe(false);
+  });
+
+  test('Match multiple fields on object using keywords', () => {
+    const predicate = parseToPredicate('name:fist and year:2017', search);
+    const result = predicate(show);
+    expect(result).toBe(true);
+  });
+
+  test('Fail to match multiple fields on object using keywords', () => {
+    const predicate = parseToPredicate('name:fist and year:2000', search);
+    const result = predicate(show);
+    expect(result).toBe(false);
+  });
+```
+
+Using the predicate to filter collection:
 
 ```javascript
 const shows = [ 
@@ -67,13 +104,6 @@ const shows = [
   { name: 'legion', year: '2017', rating: '8.8' },
   { name: 'game of thrones', year: '2011', rating: '9.5' } 
 ];
-
-function search(item, textToSearch, keyword) {
-  if (keyword === 'freetext') {
-    return Object.values(item).map(value => value.toLowerCase()).some(value => value.toLowerCase().includes(textToSearch.toLowerCase())) 
-  }
-  return item && item[keyword.toLowerCase()] && item[keyword.toLowerCase()].toLowerCase().includes(textToSearch.toLowerCase());
-}
 
 test('Search collection with keywords return multiple results', () => {
   const predicate = parseToPredicate('year:2017', search);
